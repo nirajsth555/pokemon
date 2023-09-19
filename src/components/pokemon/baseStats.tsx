@@ -1,21 +1,32 @@
-export default function BaseStats() {
+import { CapitalizeFirstLetter } from "../../utils/helpers";
+
+export default function BaseStats({ baseStats }: any) {
+    const isGreen = (value: number) => {
+        return value >= 50 ? "Green" : "Red";
+    };
     return (
         <div className="about stats">
             <ul>
-                <li>
-                    <h6 className="title">
-                        Attack
-                    </h6>
-                    <h6>
-                        10
-                        <div className="line">
-                            <div
-                                className="lines line-Red"
-                                style={{ width: `50%` }}
-                            />
-                        </div>
-                    </h6>
-                </li>
+                {baseStats.map((base, index) => (
+                    <li key={index}>
+                        <h6 className="title">
+                            {CapitalizeFirstLetter(
+                                base.name
+                                    .replace("special-attack", "Sp. Atk")
+                                    .replace("special-defense", "Sp. Def")
+                            )}
+                        </h6>
+                        <h6>
+                            {base.value}
+                            <div className="line">
+                                <div
+                                    className={`lines line-${isGreen(base.value)}`}
+                                    style={{ width: `${base.value}%` }}
+                                />
+                            </div>
+                        </h6>
+                    </li>
+                ))}
             </ul>
         </div>
     )

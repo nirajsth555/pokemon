@@ -14,6 +14,8 @@ export default function PokemonCards() {
     const [pokemonList, setPokemonList] = useState<any>([]);
     const [itemsPerPage, setItemsPerPage] = useState(8);
 
+    const [selectedPokemon, setSelectedPokemon] = useState([]);
+
     const { data: pokemons, success }: IPokemonState = useSelector((state: TRootState) => state.pokemon);
     const { data: pokemonTeam }: IPokemonTeamState = useSelector((state: TRootState) => state.team);
 
@@ -45,7 +47,8 @@ export default function PokemonCards() {
         return pokemonTeam?.some((item: any) => item.name === pokemonName)
     }
 
-    const displayPokemonDetail = () => {
+    const displayPokemonDetail = (pokemonDetail: any) => {
+        setSelectedPokemon(pokemonDetail);
         displayModal();
     }
 
@@ -71,7 +74,7 @@ export default function PokemonCards() {
                 </div>
             </div>
 
-            {showModal && <PokemonDetail handleClose={hideModal} />}
+            {showModal && <PokemonDetail handleClose={hideModal} pokemon={selectedPokemon} />}
         </>
     )
 }

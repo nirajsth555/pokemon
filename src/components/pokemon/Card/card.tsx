@@ -27,7 +27,7 @@ export default function PokemonCard({ pokemon, isInTeam, handleAddTeam, handleCa
     const pokemonType = pokemonDetail?.types?.[Math.floor(Math.random() * pokemonDetail?.types?.length)]?.type?.name;
 
     return (
-        <div className={`card card-${CapitalizeFirstLetter(pokemonType)}`} onClick={handleCardClick}>
+        <div className={`card card-${CapitalizeFirstLetter(pokemonType)}`} onClick={() => handleCardClick(pokemonDetail)}>
             <div className="card-action">
                 <div
                     className={`card-action--like card-${isInTeam ? "active" : ""}`}

@@ -1,5 +1,23 @@
-export default function Evolution() {
+import BackIcon from "../icons/back";
+
+export default function Evolution({ ImageUrl, name, evolutionInfo }: EvolutionType) {
     return (
-        <h3>Evolution</h3>
+        <>
+            <div className="evolution">
+                <div className="evolution-card">
+                    <img src={ImageUrl} alt={name} />
+                </div>
+                <BackIcon />
+                {evolutionInfo.length > 0 &&
+                    evolutionInfo.map((item, index) => (
+                        <>
+                            <div className="evolution-card">
+                                <img src={item.url} alt={evolutionInfo[index].name} />
+                            </div>
+                            {evolutionInfo.length - 2 === index && <BackIcon />}
+                        </>
+                    ))}
+            </div>
+        </>
     )
 }

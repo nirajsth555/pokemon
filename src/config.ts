@@ -5,7 +5,7 @@ const config = {
         GET_GENERATIONS_LIST: "/generation",
         GET_POKEMON_LIST_BY_GENERATION: "/generation/:generationId",
         GET_POKEMON_DETAIL: "/pokemon/:pokemon",
-        GET_POKEMON_SPECIES_DETAILS: "/pokemon-species",
+        GET_POKEMON_SPECIES_DETAILS: "/pokemon-species/:pokemon",
         GET_EVOLUTION_DETAILS: "/evolution-chain"
     }
 }
