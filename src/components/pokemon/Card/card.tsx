@@ -1,17 +1,43 @@
-import Pokeball from "../../assets/images/pokeball.png";
-import PokemonSpecies from "./species";
+import { useEffect, useState } from "react";
+import Pokeball from "../../../assets/images/pokeball.png";
+import { getPokemonDetailByName } from "../../../services/pokemon";
+import PokemonType from "../types";
 
-export default function PokemonCard() {
+export default function PokemonCard({ pokemon }: any) {
+    const [isLoading, setIsLoading] = useState(true);
+    const [pokemonDetail, setPokemonDetail] = useState<any>([]);
+
+    useEffect(() => {
+        const getDetail = async () => {
+            try {
+                const { data } = await getPokemonDetailByName(pokemon?.name);
+                setPokemonDetail(data);
+            } catch (err) {
+                console.log(err)
+            }
+
+        };
+
+        if (pokemon?.name) {
+            getDetail();
+        }
+    }, [pokemon])
+
+    const pokemonImage = pokemonDetail?.sprites?.other?.["official-artwork"]?.front_shiny
+
     return (
         <div className="card">
             <div className="card-img">
-                <img src={Pokeball} alt="pokemon" />
+                <img src={pokemonImage ?? Pokeball} alt="pokemon" />
             </div>
             <div className="card-body">
                 <h6>#10</h6>
-                <h3>Pokemon Name</h3>
+                <h3>{pokemon?.name}</h3>
                 <div className="pokemon-species">
-                    <PokemonSpecies />
+                    {pokemonDetail?.types?.map((element: any, index: number) => (
+                        <PokemonType type={element?.type?.name} key={index} />
+                    ))}
+
                 </div>
                 <div className="button button-info">
                     <svg

@@ -7,7 +7,7 @@ export const initialPokemonState: IPokemonState = {
 }
 
 export interface IPokemonState {
-    loading?: boolean,
-    success?: boolean,
-    data?: IPokemon[]
+    loading: boolean,
+    success: boolean,
+    data: IPokemon[]
 }

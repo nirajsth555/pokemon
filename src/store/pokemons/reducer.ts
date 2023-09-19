@@ -18,7 +18,8 @@ export const reducer = (
             return {
                 ...state,
                 data: action.payload,
-                loading: false
+                loading: false,
+                success: true
             }
         }
 

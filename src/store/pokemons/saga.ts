@@ -9,14 +9,14 @@ function* getPokemonListSaga(action: ActionModel) {
     try {
         const params = action.payload;
         const response: any = yield call(getPokemonListByGenerationId, params?.generationId);
-        yield put(getPokemonListSuccess(response?.data?.results));
+        yield put(getPokemonListSuccess(response?.data?.pokemon_species));
     } catch (err: any) {
         yield put(getPokemonListFinish())
     }
 }
 
-function* GenerationSaga() {
+function* PokemonSaga() {
     yield takeLatest(actionTypes.GET_ALL_POKEMONS_START, getPokemonListSaga)
 }
 
-export default GenerationSaga;
+export default PokemonSaga;

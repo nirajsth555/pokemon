@@ -7,7 +7,7 @@ export const initialGenerationState: IGenerationState = {
 }
 
 export interface IGenerationState {
-    loading?: boolean,
-    success?: boolean,
-    data?: IGeneration[]
+    loading: boolean,
+    success: boolean,
+    data: IGeneration[]
 }
