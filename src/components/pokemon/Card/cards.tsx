@@ -26,12 +26,18 @@ export default function PokemonCards() {
 
     return (
         <>
-            {pokemonList?.map((element: any, index: number) => (
-                <PokemonCard key={index} pokemon={element} />
-            ))}
-            {pokemonList.length !== pokemons.length && <button onClick={handleShowMore}>
-                Show More
-            </button>}
+            <div className="mb-10">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                    {pokemonList?.map((element: any, index: number) => (
+                        <PokemonCard key={index} pokemon={element} />
+                    ))}
+                </div>
+                <div className="text-center">
+                    {pokemonList.length !== pokemons.length && <button onClick={handleShowMore}>
+                        Show More
+                    </button>}
+                </div>
+            </div>
         </>
     )
 }

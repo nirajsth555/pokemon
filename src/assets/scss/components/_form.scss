@@ -1,0 +1,33 @@
+.form {
+  &-group {
+    margin-bottom: 1rem;
+
+    &-label {
+      display: block;
+      font-weight: 600;
+      color: $primary;
+    }
+    &-control {
+      display: block;
+      padding: 0.5rem;
+      border: 1px solid $boldGray;
+      border-radius: 0.5rem;
+      width: 100%;
+      &:focus {
+        box-shadow: 0px 0px 0px 1px $primary;
+        border-color: $primary;
+        outline: none;
+      }
+    }
+    select {
+      cursor: pointer;
+      width: 300px;
+    }
+    &-center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

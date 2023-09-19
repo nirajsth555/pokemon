@@ -1,10 +1,13 @@
-import PokeBall from '../../assets/images/pokeball.svg';
+import PokemonBallIcon from '../icons/pokemonBall';
+
 export default function MyTeam() {
     return (
-        <div className="profile">
+        <div className="profile mr-4">
             <h4>My Team</h4>
-            <img src={PokeBall} />
-            <div className="profile-team">0</div>
+            <div className="profile-team">
+                <PokemonBallIcon />
+                <div className='count'>0</div>
+            </div>
         </div>
     )
 }

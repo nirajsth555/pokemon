@@ -11,8 +11,8 @@ type TInputSelectProps = {
 
 export default function InputSelect({ label, option, handleChange }: TInputSelectProps) {
     return (
-        <div className="form-group">
-            <label className="form-group-label">{label}</label>
+        <div className="form-group form-group-center">
+            <label className="form-group-label" htmlFor="generations">{label}</label>
             <div className="mt-2">
                 <select
                     onChange={

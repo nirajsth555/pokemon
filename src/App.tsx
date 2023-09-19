@@ -1,16 +1,19 @@
-import './App.css'
+// import './App.css'
+import "./app.scss"
 import Header from './components/header/Header'
 import PokemonList from './components/pokemon/list'
 
 function App() {
 
   return (
-    <>
-      {/* <Header /> */}
-      <PokemonList />
-      {/* <PokemonCard /> */}
-      {/* <Tabs /> */}
-    </>
+    <div className="App">
+      <div className="container mx-auto">
+        <Header />
+        <PokemonList />
+        {/* <PokemonCard /> */}
+        {/* <Tabs /> */}
+      </div>
+    </div>
   )
 }
 
