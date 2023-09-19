@@ -12,3 +12,18 @@ export const convertRomanToNumber = (romanNumber: string) => {
     }
     return romanNumerals[romanNumber] !== undefined ? romanNumerals[romanNumber] : 10;
 };
+
+export const CapitalizeFirstLetter = (inputString: string): string => {
+    if (!inputString) {
+        return inputString;
+    }
+
+    if (inputString?.length === 0) {
+        return inputString;
+    }
+
+    const firstLetter = inputString[0].toUpperCase();
+    const restOfTheString = inputString.slice(1);
+
+    return firstLetter + restOfTheString;
+}; 
