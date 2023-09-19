@@ -1,6 +1,6 @@
 /* eslint-disable */
 const config = {
-    apiBaseURI: process.env.REACT_APP_API_BASE_URI,
+    apiBaseURI: import.meta.env.VITE_REACT_APP_API_BASE_URI,
     apiEndpoints: {
         GET_GENERATIONS_LIST: "/generations",
         GET_POKEMON_DETAIL: "/pokemon",
