@@ -4,7 +4,7 @@ import { getPokemonDetailByName } from "../../../services/pokemon";
 import PokemonType from "../types";
 import { CapitalizeFirstLetter } from "../../../utils/helpers";
 
-export default function PokemonCard({ pokemon, isInTeam, handleAddTeam }: any) {
+export default function PokemonCard({ pokemon, isInTeam, handleAddTeam, handleCardClick }: any) {
     const [pokemonDetail, setPokemonDetail] = useState<any>([]);
 
     useEffect(() => {
@@ -27,12 +27,13 @@ export default function PokemonCard({ pokemon, isInTeam, handleAddTeam }: any) {
     const pokemonType = pokemonDetail?.types?.[Math.floor(Math.random() * pokemonDetail?.types?.length)]?.type?.name;
 
     return (
-        <div className={`card card-${CapitalizeFirstLetter(pokemonType)}`}>
+        <div className={`card card-${CapitalizeFirstLetter(pokemonType)}`} onClick={handleCardClick}>
             <div className="card-action">
                 <div
                     className={`card-action--like card-${isInTeam ? "active" : ""}`}
-                    onClick={() => {
-                        handleAddTeam(pokemon)
+                    onClick={(event: any) => {
+                        handleAddTeam(pokemon);
+                        event.preventDefault();
                     }}
                 >
                     <svg

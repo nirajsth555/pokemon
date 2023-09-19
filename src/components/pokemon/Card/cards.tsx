@@ -5,9 +5,12 @@ import { TRootState } from "../../../store/reducers";
 import { IPokemonState } from "../../../store/pokemons/state";
 import { IPokemonTeamState } from "../../../store/team/state";
 import { addPokemonTeam } from "../../../store/team/action";
+import PokemonDetail from "../detail";
+import { useModal } from "../../../hooks/useModal";
 
 export default function PokemonCards() {
     const dispatch = useDispatch();
+    const { showModal, hideModal, displayModal } = useModal();
     const [pokemonList, setPokemonList] = useState<any>([]);
     const [itemsPerPage, setItemsPerPage] = useState(8);
 
@@ -42,6 +45,10 @@ export default function PokemonCards() {
         return pokemonTeam?.some((item: any) => item.name === pokemonName)
     }
 
+    const displayPokemonDetail = () => {
+        displayModal();
+    }
+
     return (
         <>
             {/* <div className="tabs"> */}
@@ -52,6 +59,7 @@ export default function PokemonCards() {
                             key={index}
                             pokemon={element}
                             handleAddTeam={handleAddPokemonToTeam}
+                            handleCardClick={displayPokemonDetail}
                             isInTeam={checkIsInTeam(element?.name)}
                         />
                     ))}
@@ -62,7 +70,8 @@ export default function PokemonCards() {
                     </button>}
                 </div>
             </div>
-            {/* </div> */}
+
+            {showModal && <PokemonDetail handleClose={hideModal} />}
         </>
     )
 }
