@@ -53,7 +53,13 @@ export default function PokemonTeam({ onCloseClick }: TPokemonTeamProps) {
                     </div>
                 </Modal>
             </div>
-            {showModal && <PokemonDetail handleClose={hideModal} pokemon={selectedPokemon} />}
+            {showModal &&
+                <PokemonDetail
+                    handleClose={hideModal}
+                    pokemon={selectedPokemon as IPokemon}
+                    isInTeam={checkPokemonIsInTeam(selectedPokemon?.name as string)}
+                />
+            }
         </>
     )
 }
