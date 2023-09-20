@@ -55,7 +55,12 @@ export default function PokemonCards() {
                 </div>
             </div>
 
-            {showModal && <PokemonDetail handleClose={hideModal} pokemon={selectedPokemon as IPokemon} />}
+            {showModal &&
+                <PokemonDetail
+                    handleClose={hideModal}
+                    pokemon={selectedPokemon as IPokemon}
+                    isInTeam={checkPokemonIsInTeam(selectedPokemon?.name as string)}
+                />}
         </>
     )
 }

@@ -1,5 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function TabContent({ content }: any) {
+import { ReactNode } from 'react';
+
+type TTabContentProps = {
+    content: ReactNode;
+};
+
+export default function TabContent({ content }: TTabContentProps) {
     return (
         <div className="tab-content">
             {content}

@@ -10,13 +10,16 @@ import BackIcon from "../icons/back";
 import { CapitalizeFirstLetter } from "../../utils/helpers";
 import { usePokemonSpecies } from "../../hooks/usePokemonSpecies";
 import { IPokemon } from "../../types";
+import { usePokemonTeam } from "../../hooks/usePokemonTeam";
 
 type TPokemonDetailProps = {
     handleClose: () => void,
-    pokemon: IPokemon
+    pokemon: IPokemon,
+    isInTeam: boolean
 }
 
-export default function PokemonDetail({ handleClose, pokemon }: TPokemonDetailProps) {
+export default function PokemonDetail({ handleClose, pokemon, isInTeam }: TPokemonDetailProps) {
+    const { addPokemonToTeam } = usePokemonTeam();
     const { getPokemonSpeciesByName, getPokemonEvolutionChain, pokemonEvoInfo } = usePokemonSpecies();
     const { name, sprites, order, types, abilities, height, weight, stats } = pokemon;
     const ImageUrl = sprites?.other?.["official-artwork"]?.front_default;
@@ -79,7 +82,10 @@ export default function PokemonDetail({ handleClose, pokemon }: TPokemonDetailPr
                     <div className="back" onClick={handleClose}>
                         <BackIcon />
                     </div>
-                    <div className="like like-active">
+                    <div
+                        className={`like like-${isInTeam ? "active" : ""}`}
+                        onClick={() => addPokemonToTeam(pokemon)}
+                    >
                         <LikeIcon />
                     </div>
                 </div>

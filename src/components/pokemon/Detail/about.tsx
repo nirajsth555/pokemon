@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+interface AboutType {
+    abilities: any;
+    species: any;
+    height: number;
+    weight: number;
+}
 
-export default function About({ abilities, species, height, weight }: any) {
+export default function About({ abilities, species, height, weight }: AboutType) {
     return (
         <div className="about">
             <ul>
