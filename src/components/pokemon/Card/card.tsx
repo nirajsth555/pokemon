@@ -1,30 +1,14 @@
-import { useEffect, useState } from "react";
-import Pokeball from "../../../assets/images/pokeball.png";
-import { getPokemonDetailByName } from "../../../services/pokemon";
+import { useEffect } from "react";
 import PokemonType from "../types";
 import { CapitalizeFirstLetter } from "../../../utils/helpers";
+import { usePokemonDetail } from "../../../hooks/usePokemonDetail";
 
 export default function PokemonCard({ pokemon, isInTeam, handleAddTeam, handleCardClick }: any) {
-    const [pokemonDetail, setPokemonDetail] = useState<any>([]);
+    const { getPokemonDetailByName, pokemonImage, pokemonType, detail, pokemonTypeList } = usePokemonDetail();
 
     useEffect(() => {
-        const getDetail = async () => {
-            try {
-                const { data } = await getPokemonDetailByName(pokemon?.name);
-                setPokemonDetail(data);
-            } catch (err) {
-                console.log(err)
-            }
-
-        };
-
-        if (pokemon?.name) {
-            getDetail();
-        }
+        getPokemonDetailByName(pokemon?.name)
     }, [pokemon])
-
-    const pokemonImage = pokemonDetail?.sprites?.other?.["official-artwork"]?.front_shiny || Pokeball;
-    const pokemonType = pokemonDetail?.types?.[Math.floor(Math.random() * pokemonDetail?.types?.length)]?.type?.name;
 
     return (
         <div className={`card card-${CapitalizeFirstLetter(pokemonType)}`} >
@@ -55,14 +39,14 @@ export default function PokemonCard({ pokemon, isInTeam, handleAddTeam, handleCa
                     </svg>
                 </div>
             </div>
-            <div className="card-body" onClick={() => handleCardClick(pokemonDetail)}>
+            <div className="card-body" onClick={() => handleCardClick(detail)}>
                 <h6>#10</h6>
                 <h3>{pokemon?.name}</h3>
                 <div className="card-img">
                     <img src={pokemonImage} alt={""} />
                 </div>
                 <div className="card-body--spec">
-                    {pokemonDetail?.types?.map((element: any, index: number) => (
+                    {pokemonTypeList?.types?.map((element: any, index: number) => (
                         <PokemonType type={element?.type?.name} key={index} />
                     ))}
 
