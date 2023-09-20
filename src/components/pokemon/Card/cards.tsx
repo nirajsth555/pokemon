@@ -1,15 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import PokemonCard from "./card";
 import { useState, useEffect } from "react";
 import { TRootState } from "../../../store/reducers";
 import { IPokemonState } from "../../../store/pokemons/state";
-import { IPokemonTeamState } from "../../../store/team/state";
-import { addPokemonTeam } from "../../../store/team/action";
 import PokemonDetail from "../detail";
 import { useModal } from "../../../hooks/useModal";
+import { usePokemonTeam } from "../../../hooks/usePokemonTeam";
 
 export default function PokemonCards() {
-    const dispatch = useDispatch();
+    const { addPokemonToTeam, checkPokemonIsInTeam } = usePokemonTeam();
     const { showModal, hideModal, displayModal } = useModal();
     const [pokemonList, setPokemonList] = useState<any>([]);
     const [itemsPerPage, setItemsPerPage] = useState(8);
@@ -17,7 +16,7 @@ export default function PokemonCards() {
     const [selectedPokemon, setSelectedPokemon] = useState([]);
 
     const { data: pokemons, success }: IPokemonState = useSelector((state: TRootState) => state.pokemon);
-    const { data: pokemonTeam }: IPokemonTeamState = useSelector((state: TRootState) => state.team);
+
 
     useEffect(() => {
         if (success && pokemons.length > 0) {
@@ -30,21 +29,6 @@ export default function PokemonCards() {
     const handleShowMore = () => {
         const currentItemsPerPage = itemsPerPage;
         setItemsPerPage(currentItemsPerPage + 4);
-    }
-
-    const handleAddPokemonToTeam = (pokemon: any) => {
-        let currentPokemonTeam = [...pokemonTeam];
-        const alreadyInTeam = currentPokemonTeam?.some((item) => item.name === pokemon?.name);
-        if (alreadyInTeam) {
-            currentPokemonTeam = currentPokemonTeam.filter(item => item.name !== pokemon?.name);
-        } else {
-            currentPokemonTeam.push(pokemon);
-        }
-        dispatch(addPokemonTeam(currentPokemonTeam));
-    }
-
-    const checkIsInTeam = (pokemonName: string) => {
-        return pokemonTeam?.some((item: any) => item.name === pokemonName)
     }
 
     const displayPokemonDetail = (pokemonDetail: any) => {
@@ -61,9 +45,9 @@ export default function PokemonCards() {
                         <PokemonCard
                             key={index}
                             pokemon={element}
-                            handleAddTeam={handleAddPokemonToTeam}
+                            handleAddTeam={addPokemonToTeam}
                             handleCardClick={displayPokemonDetail}
-                            isInTeam={checkIsInTeam(element?.name)}
+                            isInTeam={checkPokemonIsInTeam(element?.name)}
                         />
                     ))}
                 </div>

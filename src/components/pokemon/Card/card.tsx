@@ -27,13 +27,12 @@ export default function PokemonCard({ pokemon, isInTeam, handleAddTeam, handleCa
     const pokemonType = pokemonDetail?.types?.[Math.floor(Math.random() * pokemonDetail?.types?.length)]?.type?.name;
 
     return (
-        <div className={`card card-${CapitalizeFirstLetter(pokemonType)}`} onClick={() => handleCardClick(pokemonDetail)}>
+        <div className={`card card-${CapitalizeFirstLetter(pokemonType)}`} >
             <div className="card-action">
                 <div
                     className={`card-action--like card-${isInTeam ? "active" : ""}`}
-                    onClick={(event: any) => {
+                    onClick={() => {
                         handleAddTeam(pokemon);
-                        event.preventDefault();
                     }}
                 >
                     <svg
@@ -56,7 +55,7 @@ export default function PokemonCard({ pokemon, isInTeam, handleAddTeam, handleCa
                     </svg>
                 </div>
             </div>
-            <div className="card-body">
+            <div className="card-body" onClick={() => handleCardClick(pokemonDetail)}>
                 <h6>#10</h6>
                 <h3>{pokemon?.name}</h3>
                 <div className="card-img">
