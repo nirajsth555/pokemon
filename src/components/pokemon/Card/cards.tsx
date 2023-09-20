@@ -1,30 +1,26 @@
-import { useSelector } from "react-redux";
 import PokemonCard from "./card";
 import { useState, useEffect } from "react";
-import { TRootState } from "../../../store/reducers";
-import { IPokemonState } from "../../../store/pokemons/state";
 import PokemonDetail from "../detail";
 import { useModal } from "../../../hooks/useModal";
 import { usePokemonTeam } from "../../../hooks/usePokemonTeam";
+import { usePokemon } from "../../../hooks/usePokemon";
 
 export default function PokemonCards() {
     const { addPokemonToTeam, checkPokemonIsInTeam } = usePokemonTeam();
+    const { pokemons } = usePokemon();
     const { showModal, hideModal, displayModal } = useModal();
     const [pokemonList, setPokemonList] = useState<any>([]);
     const [itemsPerPage, setItemsPerPage] = useState(8);
 
     const [selectedPokemon, setSelectedPokemon] = useState([]);
 
-    const { data: pokemons, success }: IPokemonState = useSelector((state: TRootState) => state.pokemon);
-
-
     useEffect(() => {
-        if (success && pokemons.length > 0) {
+        if (pokemons.length > 0) {
             const copyPokemons = [...pokemons];
             const newPokemonList = copyPokemons.slice(0, itemsPerPage);
             setPokemonList(newPokemonList)
         }
-    }, [pokemons, success, itemsPerPage]);
+    }, [pokemons, itemsPerPage]);
 
     const handleShowMore = () => {
         const currentItemsPerPage = itemsPerPage;
