@@ -12,7 +12,7 @@ export function usePokemonTeam() {
 
     const addPokemonToTeam = (pokemon: IPokemon) => {
         let currentPokemonTeam = [...pokemonTeam];
-        if (currentPokemonTeam.length === 2) {
+        if (currentPokemonTeam.length === 6) {
             displayModal();
             return;
         }
