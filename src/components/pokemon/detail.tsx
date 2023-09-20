@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 import LikeIcon from "../icons/like";
 import Modal from "../modal/Modal";
@@ -13,11 +14,11 @@ export default function PokemonDetail({ handleClose, pokemon }: any) {
     const { getPokemonSpeciesByName, getPokemonEvolutionChain, pokemonEvoInfo } = usePokemonSpecies();
     const { name, sprites, order, types, abilities, height, weight, stats } = pokemon;
     const ImageUrl = sprites?.other?.["official-artwork"]?.front_default;
-    const Species = types?.map((type) => CapitalizeFirstLetter(type.type.name));
-    const Abilities = abilities?.map((ab) =>
+    const Species = types?.map((type: any) => CapitalizeFirstLetter(type.type.name));
+    const Abilities = abilities?.map((ab: any) =>
         CapitalizeFirstLetter(ab.ability.name)
     );
-    const baseStats = stats?.map((stat) => {
+    const baseStats = stats?.map((stat: any) => {
         const statName = stat.stat.name.toLowerCase();
         const name = statName;
         return {

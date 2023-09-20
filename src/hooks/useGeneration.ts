@@ -4,10 +4,11 @@ import { IGenerationState } from "../store/generations/state";
 import { TRootState } from "../store/reducers";
 import { getGenerationList } from '../store/generations/action';
 import { CapitalizeFirstLetter, convertRomanToNumber } from "../utils/helpers";
+import { IGenerationOption } from "../types";
 
 export function useGeneration() {
     const dispatch = useDispatch();
-    const [generationOptions, setGenerationOptions] = useState<any>([]);
+    const [generationOptions, setGenerationOptions] = useState<IGenerationOption[]>([]);
 
     const { data: generationList }: IGenerationState = useSelector((state: TRootState) => state.generation);
 

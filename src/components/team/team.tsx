@@ -5,14 +5,19 @@ import PokemonCard from "../pokemon/Card/card";
 import { usePokemonTeam } from "../../hooks/usePokemonTeam";
 import PokemonDetail from "../pokemon/detail";
 import { useModal } from "../../hooks/useModal";
+import { IPokemon } from "../../types";
 
-export default function PokemonTeam({ onCloseClick }: any) {
+type TPokemonTeamProps = {
+    onCloseClick: () => void
+}
+
+export default function PokemonTeam({ onCloseClick }: TPokemonTeamProps) {
     const { pokemonTeam, checkPokemonIsInTeam, addPokemonToTeam } = usePokemonTeam();
     const { showModal, hideModal, displayModal } = useModal();
 
-    const [selectedPokemon, setSelectedPokemon] = useState([]);
+    const [selectedPokemon, setSelectedPokemon] = useState<IPokemon>();
 
-    const displayPokemonDetail = (pokemonDetail: any) => {
+    const displayPokemonDetail = (pokemonDetail: IPokemon) => {
         setSelectedPokemon(pokemonDetail);
         displayModal();
     }

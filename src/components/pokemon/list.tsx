@@ -4,7 +4,6 @@ import PokemonCards from './Card/cards';
 import { useGeneration } from '../../hooks/useGeneration';
 import { usePokemon } from '../../hooks/usePokemon';
 
-
 export default function PokemonList() {
     const { getGeneration, generationOptions } = useGeneration();
     const { getPokemonListByGeneration } = usePokemon();
@@ -26,14 +25,12 @@ export default function PokemonList() {
 
     return (
         <>
-            {/* {loading && <Loader />} */}
             <InputSelect
                 option={generationOptions}
                 label='Select Generation'
                 handleChange={(selectedGeneration: string) => setSelectedGeneration(selectedGeneration)}
             />
             <PokemonCards />
-            {/* <PokemonList /> */}
 
         </>
     )

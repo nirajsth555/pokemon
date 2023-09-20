@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export default function About({ abilities, species, height, weight }: any) {
     return (
         <div className="about">

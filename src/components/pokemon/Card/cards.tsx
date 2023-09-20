@@ -4,15 +4,16 @@ import PokemonDetail from "../detail";
 import { useModal } from "../../../hooks/useModal";
 import { usePokemonTeam } from "../../../hooks/usePokemonTeam";
 import { usePokemon } from "../../../hooks/usePokemon";
+import { IPokemon } from "../../../types";
 
 export default function PokemonCards() {
     const { addPokemonToTeam, checkPokemonIsInTeam } = usePokemonTeam();
     const { pokemons } = usePokemon();
     const { showModal, hideModal, displayModal } = useModal();
-    const [pokemonList, setPokemonList] = useState<any>([]);
+    const [pokemonList, setPokemonList] = useState<IPokemon[]>([]);
     const [itemsPerPage, setItemsPerPage] = useState(8);
 
-    const [selectedPokemon, setSelectedPokemon] = useState([]);
+    const [selectedPokemon, setSelectedPokemon] = useState<IPokemon>();
 
     useEffect(() => {
         if (pokemons.length > 0) {
@@ -27,7 +28,7 @@ export default function PokemonCards() {
         setItemsPerPage(currentItemsPerPage + 4);
     }
 
-    const displayPokemonDetail = (pokemonDetail: any) => {
+    const displayPokemonDetail = (pokemonDetail: IPokemon) => {
         setSelectedPokemon(pokemonDetail);
         displayModal();
     }
@@ -37,7 +38,7 @@ export default function PokemonCards() {
             {/* <div className="tabs"> */}
             <div className="mb-10">
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-                    {pokemonList?.map((element: any, index: number) => (
+                    {pokemonList?.map((element: IPokemon, index: number) => (
                         <PokemonCard
                             key={index}
                             pokemon={element}

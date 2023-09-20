@@ -1,4 +1,11 @@
+import { GenerationListType } from "../../types";
 import BackIcon from "../icons/back";
+
+interface EvolutionType {
+    ImageUrl: string;
+    name: string;
+    evolutionInfo: GenerationListType[];
+}
 
 export default function Evolution({ ImageUrl, name, evolutionInfo }: EvolutionType) {
     return (

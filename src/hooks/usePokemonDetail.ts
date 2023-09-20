@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Pokeball from "../assets/images/pokeball.png";
 import { getPokemonDetailByName as pokemonDetail } from "../services/pokemon";
+import { IPokemon } from "../types";
 
 export function usePokemonDetail() {
-    const [detail, setDetail] = useState<any>([]);
+    const [detail, setDetail] = useState<IPokemon>();
 
     const getPokemonDetailByName = async (pokemonName: string) => {
         try {
@@ -16,7 +17,8 @@ export function usePokemonDetail() {
     };
 
     const pokemonImage = detail?.sprites?.other?.["official-artwork"]?.front_shiny || Pokeball;
-    const pokemonType = detail?.types?.[Math.floor(Math.random() * detail?.types?.length)]?.type?.name;
+    const pokemonType = detail?.types?.[0]?.type?.name;
+    // const pokemonType = detail?.types?.[Math.floor(Math.random() * detail?.types?.length)]?.type?.name;
     const pokemonTypeList = detail?.types;
 
     return {

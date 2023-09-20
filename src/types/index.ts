@@ -15,6 +15,11 @@ export interface IGeneration {
     url: string;
 }
 
+export interface IGenerationOption {
+    label: string,
+    value: string
+}
+
 export interface IPokemon {
     abilities: Ability[];
     base_experience: number;
@@ -379,4 +384,9 @@ export interface EvolutionDetail2 {
     trade_species: any;
     trigger: Species;
     turn_upside_down: boolean;
+}
+
+export interface GenerationListType {
+    name: string;
+    url: string;
 }

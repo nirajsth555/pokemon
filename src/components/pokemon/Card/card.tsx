@@ -1,9 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from "react";
 import PokemonType from "../types";
 import { CapitalizeFirstLetter } from "../../../utils/helpers";
 import { usePokemonDetail } from "../../../hooks/usePokemonDetail";
+import { IPokemon } from "../../../types";
 
-export default function PokemonCard({ pokemon, isInTeam, handleAddTeam, handleCardClick }: any) {
+type TPokemonCardProps = {
+    pokemon: IPokemon,
+    isInTeam: boolean,
+    handleAddTeam: (pokemon: IPokemon) => void,
+    handleCardClick: (pokemon: IPokemon) => void
+}
+
+export default function PokemonCard({ pokemon, isInTeam, handleAddTeam, handleCardClick }: TPokemonCardProps) {
     const { getPokemonDetailByName, pokemonImage, pokemonType, detail, pokemonTypeList } = usePokemonDetail();
 
     useEffect(() => {
@@ -11,7 +20,7 @@ export default function PokemonCard({ pokemon, isInTeam, handleAddTeam, handleCa
     }, [pokemon])
 
     return (
-        <div className={`card card-${CapitalizeFirstLetter(pokemonType)}`} >
+        <div className={`card card-${CapitalizeFirstLetter(pokemonType as string)}`} >
             <div className="card-action">
                 <div
                     className={`card-action--like card-${isInTeam ? "active" : ""}`}
@@ -39,14 +48,14 @@ export default function PokemonCard({ pokemon, isInTeam, handleAddTeam, handleCa
                     </svg>
                 </div>
             </div>
-            <div className="card-body" onClick={() => handleCardClick(detail)}>
+            <div className="card-body" onClick={() => handleCardClick(detail as any)}>
                 <h6>#10</h6>
                 <h3>{pokemon?.name}</h3>
                 <div className="card-img">
                     <img src={pokemonImage} alt={""} />
                 </div>
                 <div className="card-body--spec">
-                    {pokemonTypeList?.types?.map((element: any, index: number) => (
+                    {(pokemonTypeList as any)?.types?.map((element: any, index: number) => (
                         <PokemonType type={element?.type?.name} key={index} />
                     ))}
 

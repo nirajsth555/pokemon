@@ -1,6 +1,13 @@
 import { CapitalizeFirstLetter } from "../../utils/helpers";
 
-export default function BaseStats({ baseStats }: any) {
+interface BaseStatsType {
+    baseStats: {
+        name: string;
+        value: number;
+    }[];
+}
+
+export default function BaseStats({ baseStats }: BaseStatsType) {
     const isGreen = (value: number) => {
         return value >= 50 ? "Green" : "Red";
     };
