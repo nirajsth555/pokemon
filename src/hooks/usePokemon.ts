@@ -6,7 +6,7 @@ import { TRootState } from "../store/reducers";
 export function usePokemon() {
     const dispatch = useDispatch();
 
-    const { data: pokemons }: IPokemonState = useSelector((state: TRootState) => state.pokemon);
+    const { data: pokemons, loading }: IPokemonState = useSelector((state: TRootState) => state.pokemon);
 
     const getPokemonListByGeneration = (generation: number | string) => {
         dispatch(getPokemonList(generation));
@@ -14,6 +14,7 @@ export function usePokemon() {
 
     return {
         pokemons,
-        getPokemonListByGeneration
+        getPokemonListByGeneration,
+        loading
     }
 }

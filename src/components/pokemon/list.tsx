@@ -3,10 +3,11 @@ import InputSelect from '../common/InputSelect';
 import PokemonCards from './Card/cards';
 import { useGeneration } from '../../hooks/useGeneration';
 import { usePokemon } from '../../hooks/usePokemon';
+import Loader from "../loader/Loader";
 
 export default function PokemonList() {
     const { getGeneration, generationOptions } = useGeneration();
-    const { getPokemonListByGeneration } = usePokemon();
+    const { getPokemonListByGeneration, loading } = usePokemon();
     const [selectedGeneration, setSelectedGeneration] = useState("");
 
     useEffect(() => {
@@ -30,7 +31,8 @@ export default function PokemonList() {
                 label='Select Generation'
                 handleChange={(selectedGeneration: string) => setSelectedGeneration(selectedGeneration)}
             />
-            <PokemonCards />
+            {loading && <Loader size="lg" />}
+            {!loading && <PokemonCards />}
 
         </>
     )
