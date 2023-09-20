@@ -4,7 +4,6 @@ import PokemonType from "../types";
 import { CapitalizeFirstLetter } from "../../../utils/helpers";
 import { usePokemonDetail } from "../../../hooks/usePokemonDetail";
 import { IPokemon } from "../../../types";
-import Loader from "../../loader/Loader";
 
 type TPokemonCardProps = {
     pokemon: IPokemon,

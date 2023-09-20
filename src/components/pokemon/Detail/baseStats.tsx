@@ -1,4 +1,4 @@
-import { CapitalizeFirstLetter } from "../../utils/helpers";
+import { CapitalizeFirstLetter } from "../../../utils/helpers";
 
 interface BaseStatsType {
     baseStats: {

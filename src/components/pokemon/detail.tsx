@@ -3,14 +3,20 @@ import { useState, useEffect } from "react";
 import LikeIcon from "../icons/like";
 import Modal from "../modal/Modal";
 import Tabs from "../tabs/Tabs";
-import About from "./about";
-import BaseStats from "./baseStats";
-import Evolution from "./evolution";
+import About from "./Detail/about";
+import BaseStats from "./Detail/baseStats";
+import Evolution from "./Detail/evolution";
 import BackIcon from "../icons/back";
 import { CapitalizeFirstLetter } from "../../utils/helpers";
 import { usePokemonSpecies } from "../../hooks/usePokemonSpecies";
+import { IPokemon } from "../../types";
 
-export default function PokemonDetail({ handleClose, pokemon }: any) {
+type TPokemonDetailProps = {
+    handleClose: () => void,
+    pokemon: IPokemon
+}
+
+export default function PokemonDetail({ handleClose, pokemon }: TPokemonDetailProps) {
     const { getPokemonSpeciesByName, getPokemonEvolutionChain, pokemonEvoInfo } = usePokemonSpecies();
     const { name, sprites, order, types, abilities, height, weight, stats } = pokemon;
     const ImageUrl = sprites?.other?.["official-artwork"]?.front_default;
@@ -66,7 +72,9 @@ export default function PokemonDetail({ handleClose, pokemon }: any) {
 
     return (
         <Modal>
-            <div className="modal-header modal-Fire">
+            <div className={`modal-header modal-${CapitalizeFirstLetter(
+                Species ? Species[0] : "Default"
+            )}`}>
                 <div className="icons">
                     <div className="back" onClick={handleClose}>
                         <BackIcon />

@@ -1,5 +1,5 @@
-import { GenerationListType } from "../../types";
-import BackIcon from "../icons/back";
+import { GenerationListType } from "../../../types";
+import BackIcon from "../../icons/back";
 
 interface EvolutionType {
     ImageUrl: string;
